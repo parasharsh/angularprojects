@@ -1,0 +1,38 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "types": [],
+    "baseUrl": "./",
+    "paths": {
+      "foo-lib": [
+        "../dist/foo-lib"
+      ],
+      "foo-lib/*": [
+        "../dist/foo-lib/*"
+      ],
+      "#lib/*": [
+        "../dist/foo-lib/lib/*"
+      ],
+      "#shared":[
+        "app/shared"
+      ],
+      "#shared/*":[
+        "app/shared/*"
+      ],
+      "#user":[
+        "app/user"
+      ],
+      "#user/*":[
+        "app/user/*"
+      ],
+      "#app/*": [ "app/*"]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+
+}
