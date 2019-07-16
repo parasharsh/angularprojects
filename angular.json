@@ -21,7 +21,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "src/tsconfig.json",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -44,7 +44,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -97,7 +97,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
+              "src/tsconfig.json",
               "src/tsconfig.spec.json"
             ],
             "exclude": [
@@ -128,6 +128,41 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "foo-lib": {
+      "root": "projects/foo-lib",
+      "sourceRoot": "projects/foo-lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/foo-lib/tsconfig.json",
+            "project": "projects/foo-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/foo-lib/src/test.ts",
+            "tsConfig": "projects/foo-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/foo-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/foo-lib/tsconfig.json",
+              "projects/foo-lib/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
